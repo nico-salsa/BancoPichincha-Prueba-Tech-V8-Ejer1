@@ -12,9 +12,11 @@ Conclusiones del ejercicio
 - Los productos seleccionados aparecen con marca "***" en el carrito, asociada a una advertencia de disponibilidad o cantidad. Aun asi, el flujo permite completar la compra y llegar a la confirmacion final.
 
 3. Decisiones de implementacion
-- Se utilizo Serenity BDD con JUnit 5, Screenplay y Maven.
+- Se utilizo Serenity BDD con Cucumber, Screenplay y Maven.
+- La suite se organizo con la estructura clasica de runner, stepdefinitions, features, constants, ui y tasks para que la ejecucion pueda iniciarse directamente desde un runner.
 - Se dejo la ejecucion principal en Failsafe para evitar la duplicacion de corridas con Surefire.
-- Los datos de prueba quedaron externalizados en checkout-data.properties para facilitar mantenimiento.
+- Los datos de prueba y mensajes esperados quedaron centralizados en clases de constants para hacer mas visible la parametrizacion del flujo.
+- El runner clasico solicitado funciona correctamente con Serenity 5.3.7, aunque el framework ya lo marca como API en transicion; si a futuro se actualiza la estrategia de ejecucion, conviene revisar la alternativa recomendada por Serenity.
 
 4. Evidencia de validacion
 - La ejecucion verificada localmente fue: mvn clean verify
