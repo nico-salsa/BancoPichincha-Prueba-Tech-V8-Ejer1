@@ -1,0 +1,25 @@
+Conclusiones del ejercicio
+
+1. La automatizacion E2E valida de extremo a extremo el flujo solicitado:
+- Agregar dos productos al carrito.
+- Visualizar el carrito.
+- Completar el Guest Checkout.
+- Finalizar hasta el mensaje "Your order has been placed!".
+
+2. Hallazgos tecnicos relevantes
+- El checkout de OpenCart carga sus formularios y botones por AJAX, por lo que la estabilidad depende de esperas explicitas sobre paneles y botones de continuacion.
+- El sitio usa HTTPS en el checkout con un certificado no confiable para herramientas simples como PowerShell; en navegador automatizado se resolvio aceptando certificados inseguros.
+- Los productos seleccionados aparecen con marca "***" en el carrito, asociada a una advertencia de disponibilidad o cantidad. Aun asi, el flujo permite completar la compra y llegar a la confirmacion final.
+
+3. Decisiones de implementacion
+- Se utilizo Serenity BDD con JUnit 5, Screenplay y Maven.
+- Se dejo la ejecucion principal en Failsafe para evitar la duplicacion de corridas con Surefire.
+- Los datos de prueba quedaron externalizados en checkout-data.properties para facilitar mantenimiento.
+
+4. Evidencia de validacion
+- La ejecucion verificada localmente fue: mvn clean verify
+- El reporte de Serenity se genera en: target/site/serenity/index.html
+
+5. Recomendaciones
+- Si el sitio cambia textos o estructura del checkout, revisar primero los localizadores de los paneles AJAX y del mensaje final.
+- Mantener Java, Maven, Chrome y las dependencias de Serenity actualizadas para reducir problemas de compatibilidad entre navegador y WebDriver.
